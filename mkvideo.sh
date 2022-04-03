@@ -11,4 +11,4 @@ input_image=$2
 output_video=$3
 
 convert -resize 1024 "$input_image" "$input_image"
-ffmpeg -loop 1 -i "$input_image" -i "$input_audio" -shortest -acodec copy -vcodec mjpeg "$output_video"
+ffmpeg -loop 1 -i "$input_image" -i "$input_audio" -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest "$output_video"
